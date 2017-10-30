@@ -1,0 +1,30 @@
+#!/bin/bash
+
+cd `dirname $0`
+
+API_KEY={{ google_api_key }}
+
+RULFILE=`tempfile /tmp/you-url-XXXX`
+
+if [ -d ~/.venv_music ]; then
+	source ~/.venv_music/bin/activate
+fi
+
+echo "Start to get youtube url.."
+python get_youtube_url_from_chart.py --api-key=${API_KEY} > ${RULFILE}
+if [ $? -ne 0 ]; then
+	echo "Failed to run get_youtube_url_from_chart.py"
+	rm -f  ${RULFILE}
+	exit 1
+fi
+
+echo "Start to get mp3 from youtube.."
+youtube-dl --extract-audio --audio-format mp3 -o "~/music/%(title)s.%(ext)s" `head -n 50 ${RULFILE}`
+rm -f  ${RULFILE}
+
+if [ -d ~/.venv_music ]; then
+	deactivate
+fi
+
+echo "done"
+
