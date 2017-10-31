@@ -6,12 +6,6 @@
   - name: Install packages
     apt: name={{item}} state=present update_cache=yes
     with_items:
-      - mpg123
-      - pi-bluetooth
-      - blueman
-      - pulseaudio
-      - pavucontrol
-      - pulseaudio-module-bluetooth
       - virtualenv
       - ffmpeg
       - mplayer
