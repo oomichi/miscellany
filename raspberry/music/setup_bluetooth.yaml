@@ -11,6 +11,10 @@
       - pulseaudio
       - pavucontrol
       - pulseaudio-module-bluetooth
+  - name: Add pi user to bluetooth group because of https://raspberrypi.stackexchange.com/questions/71333/bluetooth-does-not-work-with-raspbian-stretch-and-raspberry-pi-3/71384
+    user:
+      name: pi
+      groups: pi,bluetooth
   - name: Reboot
     shell: sleep 2 && shutdown -r now
     async: 1
