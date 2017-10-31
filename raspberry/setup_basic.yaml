@@ -3,8 +3,14 @@
   become_user: root
   user: pi
   tasks:
-  - name: Disable password ssh-login
-    shell: sed -i s/"#PasswordAuthentication yes"/"PasswordAuthentication no"/ /etc/ssh/sshd_config
+  - name: Install packages
+    apt: name={{item}} state=present update_cache=yes
+    with_items:
+      - vim
+  - name: Upgrade packages
+    shell: apt-get update; apt-get upgrade
+  - name: Upgrade firmware
+    shell: apt-get dist-upgrade
   - name: Reboot
     shell: sleep 2 && shutdown -r now
     async: 1
@@ -15,3 +21,4 @@
     changed_when: false
     become: false
     run_once: true
+
