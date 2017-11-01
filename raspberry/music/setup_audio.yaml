@@ -19,8 +19,6 @@
     changed_when: false
     become: false
     run_once: true
-  - name: Boot pulseaudio
-    shell: pulseaudio -D
 - hosts: raspberry
   user: pi
   tasks:
