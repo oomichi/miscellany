@@ -134,6 +134,12 @@ We can change sound volume::
  Front Right: Playback 127 [100%] [on]
  $
 
+Want to make it speak English from text
+---------------------------------------
+
+eSpeak seems a common way as open-source according to https://www.webbie.org.uk/texttospeech.htm
+
+
 References
 ----------
 
