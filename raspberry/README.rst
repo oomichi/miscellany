@@ -95,6 +95,7 @@ Connect to the target bluetooth device::
  [JBL Flip 3]# quit
 
 After connecting, the prompt is changed to the device name like the above.
+If failing, don't give up and try it again after rebooting.
 
 Create ~/.asoundrc file::
 
@@ -108,10 +109,36 @@ Play music::
 
  $ mplayer -ao alsa:device=bluealsa closer.mp3
 
+We can change sound volume::
+
+ $ amixer -D bluealsa
+ Simple mixer control 'JBL Flip 3 - A2DP',0
+ Capabilities: pvolume pswitch
+ Playback channels: Front Left - Front Right
+ Limits: Playback 0 - 127
+ Mono:
+ Front Left: Playback 127 [100%] [on]
+ Front Right: Playback 127 [100%] [on]
+ $
+
+(TODO) but I cannot change the sound volume with amixer command, it doesn't affect the volume::
+
+ $ amixer -D bluealsa sset 'JBL Flip 3 - A2DP' 50%
+ $ amixer -D bluealsa
+ Simple mixer control 'JBL Flip 3 - A2DP',0
+ Capabilities: pvolume pswitch
+ Playback channels: Front Left - Front Right
+ Limits: Playback 0 - 127
+ Mono:
+ Front Left: Playback 127 [100%] [on]
+ Front Right: Playback 127 [100%] [on]
+ $
+
 References
 ----------
 
 Bluetooth: https://qiita.com/Sam/items/5169d9f060aa31080b77
+Bluetooth: https://github.com/Arkq/bluez-alsa
 Voice recognition: http://blog.neospeech.com/top-5-open-source-speech-recognition-toolkits/
 Homemade audio sw: http://westplain.sakuraweb.com/translate/pygame/Music.cgi
 youtube-dl: https://askubuntu.com/questions/564567/how-to-download-playlist-from-youtube-dl

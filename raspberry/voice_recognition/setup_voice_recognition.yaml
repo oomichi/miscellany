@@ -1,0 +1,15 @@
+- hosts: raspberry
+  become: true
+  become_user: root
+  user: pi
+  tasks:
+  - name: Download julius file
+    get_url: url="https://ja.osdn.net/projects/julius/downloads/66547/julius-4.4.2.tar.gz" dest=/tmp
+  - name: Extract julius file
+    unarchive: src=/tmp/julius-4.4.2.tar.gz dest=/tmp
+  - name: Build julius [1/3]
+    shell: cd /tmp/julius-4.4.2; ./configure
+  - name: Build julius [2/3]
+    shell: cd /tmp/julius-4.4.2; make
+  - name: Build julius [3/3]
+    shell: make install
