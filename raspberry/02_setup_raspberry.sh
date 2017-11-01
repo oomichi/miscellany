@@ -10,7 +10,5 @@ if [ -n "${UNCONFIG}" ]; then
 fi
 
 ansible-playbook -vvvv -i hosts ./setup_basic.yaml
-
 ansible-playbook -vvvv -i hosts ./music/setup_audio.yaml
-echo "Need to do more thing by hands based on https://qiita.com/Sam/items/5169d9f060aa31080b77"
 
