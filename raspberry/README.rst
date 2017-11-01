@@ -75,8 +75,38 @@ The way is just::
 
  $ ./get_music_from_chart.sh
 
-Want to play mp3 audio with bluetooth audio
--------------------------------------------
+[Done] Want to play mp3 audio with bluetooth audio
+--------------------------------------------------
+
+Connect to the target bluetooth device::
+
+ $ sudo bluetoothctl
+ [bluetooth]# scan on              <<Push bluetooth button on the device>>
+ Discovery started
+ [CHG] Controller B8:27:EB:DD:30:8F Discovering: yes
+ [NEW] Device B8:69:C2:74:19:5F JBL Flip 3
+ [bluetooth]# pair B8:69:C2:74:19:5F
+ [bluetooth]# trust B8:69:C2:74:19:5F
+ [bluetooth]# connect B8:69:C2:74:19:5F
+ Attempting to connect to B8:69:C2:74:19:5F
+ [CHG] Device B8:69:C2:74:19:5F Connected: yes
+ Connection successful
+ [CHG] Device B8:69:C2:74:19:5F ServicesResolved: yes
+ [JBL Flip 3]# quit
+
+After connecting, the prompt is changed to the device name like the above.
+
+Create ~/.asoundrc file::
+
+ $ cat ~/.asoundrc
+ defaults.bluealsa.interface "hci0"
+ defaults.bluealsa.device "B8:69:C2:74:19:5F"
+ defaults.bluealsa.profile "a2dp"
+ defaults.bluealsa.delay 10000
+
+Play music::
+
+ $ mplayer -ao alsa:device=bluealsa closer.mp3
 
 References
 ----------
