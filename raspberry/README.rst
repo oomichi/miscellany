@@ -75,8 +75,8 @@ The way is just::
 
  $ ./get_music_from_chart.sh
 
-[Done] Want to play mp3 audio with bluetooth audio
---------------------------------------------------
+Want to play mp3 audio with bluetooth audio
+-------------------------------------------
 
 Connect to the target bluetooth device::
 
