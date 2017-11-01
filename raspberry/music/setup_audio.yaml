@@ -43,4 +43,4 @@
   - name: Create virtual env for music
     shell: virtualenv /home/pi/.venv_music
   - name: Install python packages
-    shell: source /home/pi/.venv_music/bin/activate; pip install -r /home/pi/.venv_music/requirements.txt
+    shell: . /home/pi/.venv_music/bin/activate; pip install -r /home/pi/.venv_music/requirements.txt
