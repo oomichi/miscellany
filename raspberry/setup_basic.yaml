@@ -8,7 +8,7 @@
     with_items:
       - vim
   - name: Upgrade packages
-    shell: apt-get update; apt-get upgrade
+    shell: apt-get update; apt-get -y upgrade
   - name: Upgrade firmware
     shell: apt-get dist-upgrade
   - name: Reboot
