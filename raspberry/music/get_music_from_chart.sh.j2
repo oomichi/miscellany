@@ -19,7 +19,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Start to get mp3 from youtube.."
-youtube-dl --extract-audio --audio-format mp3 -o "~/music/%(title)s.%(ext)s" `head -n 50 ${RULFILE}`
+youtube-dl --extract-audio --audio-format mp3 -o "~/music/hot-100/%(title)s.%(ext)s" `head -n 50 ${RULFILE}`
 rm -f  ${RULFILE}
 
 if [ -d ~/.venv_music ]; then
