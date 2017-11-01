@@ -6,6 +6,7 @@
   - name: Install packages
     apt: name={{item}} state=present update_cache=yes
     with_items:
+      - python-pip
       - virtualenv
       - ffmpeg
       - mplayer
@@ -20,21 +21,21 @@
     file: path=/home/pi/.venv_music state=directory owner=pi group=pi mode=0755
   - name: Copy get_music_from_chart.sh
     template:
-      src: ./music/get_music_from_chart.sh.j2
+      src: ./get_music_from_chart.sh.j2
       dest: /home/pi/bin/get_music_from_chart.sh
       owner: pi
       group: pi
       mode: '0755'
   - name: Copy get_youtube_url_from_chart.py
     template:
-      src: ./music/get_youtube_url_from_chart.py
+      src: ./get_youtube_url_from_chart.py
       dest: /home/pi/bin/get_youtube_url_from_chart.py
       owner: pi
       group: pi
       mode: '0644'
   - name: Copy requirements.txt
     template:
-      src: ./music/requirements.txt
+      src: ./requirements.txt
       dest: /home/pi/.venv_music/requirements.txt
       owner: pi
       group: pi
