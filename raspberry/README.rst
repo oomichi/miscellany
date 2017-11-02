@@ -139,6 +139,8 @@ Want to make it speak English from text
 
 eSpeak seems a common way as open-source according to https://www.webbie.org.uk/texttospeech.htm
 
+$ sudo apt-get install espeak
+$ espeak -v en "Hello" -w hello.wav
 
 References
 ----------
