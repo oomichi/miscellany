@@ -109,6 +109,10 @@ Play music::
 
  $ mplayer -ao alsa:device=bluealsa closer.mp3
 
+Or::
+
+ $ vlc --aout alsa --alsa-audio-device bluealsa closer.mp3
+
 We can change sound volume::
 
  $ amixer -D bluealsa
