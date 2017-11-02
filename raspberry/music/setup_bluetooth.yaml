@@ -7,3 +7,18 @@
     apt: name={{item}} state=present update_cache=yes
     with_items:
       - bluealsa
+  - name: Copy connect_bt.sh
+    template:
+      src: ./connect_bt.sh.j2
+      dest: /usr/local/bin/connect_bt.sh
+      owner: root
+      group: root
+      mode: '1755'
+  - name: Copy .asoundrc
+    template:
+      src: ./asoundrc.j2
+      dest: /home/pi/.asoundrc
+      owner: pi
+      group: pi
+      mode: '0644'
+
