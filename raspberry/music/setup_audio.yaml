@@ -9,7 +9,7 @@
       - python-pip
       - virtualenv
       - ffmpeg
-      - mplayer
+      - vlc
 - hosts: raspberry
   user: pi
   tasks:
