@@ -117,26 +117,21 @@ We can change sound volume::
 
  $ amixer -D bluealsa
  Simple mixer control 'JBL Flip 3 - A2DP',0
- Capabilities: pvolume pswitch
- Playback channels: Front Left - Front Right
- Limits: Playback 0 - 127
- Mono:
- Front Left: Playback 127 [100%] [on]
- Front Right: Playback 127 [100%] [on]
+   Capabilities: pvolume pswitch
+   Playback channels: Front Left - Front Right
+   Limits: Playback 0 - 127
+   Mono:
+   Front Left: Playback 127 [100%] [on]
+   Front Right: Playback 127 [100%] [on]
  $
-
-(TODO) but I cannot change the sound volume with amixer command, it doesn't affect the volume::
-
  $ amixer -D bluealsa sset 'JBL Flip 3 - A2DP' 50%
- $ amixer -D bluealsa
  Simple mixer control 'JBL Flip 3 - A2DP',0
- Capabilities: pvolume pswitch
- Playback channels: Front Left - Front Right
- Limits: Playback 0 - 127
- Mono:
- Front Left: Playback 127 [100%] [on]
- Front Right: Playback 127 [100%] [on]
- $
+   Capabilities: pvolume pswitch
+   Playback channels: Front Left - Front Right
+   Limits: Playback 0 - 127
+   Mono:
+   Front Left: Playback 64 [50%] [on]
+   Front Right: Playback 64 [50%] [on]
 
 Want to make it speak English from text
 ---------------------------------------
