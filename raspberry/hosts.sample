@@ -1,0 +1,9 @@
+[raspberry]
+NEED-TO-BE-CHANGED
+
+[raspberry:vars]
+ansible_ssh_private_key_file=~/.ssh/id_rsa_raspberry
+wifi_ssid=NEED-TO-BE-CHANGED
+wifi_password=NEED-TO-BE-CHANGED
+google_api_key=NEED-TO-BE-CHANGED
+bluetooth_device_address=NEED-TO-BE-CHANGED
