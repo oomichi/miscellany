@@ -1,0 +1,10 @@
+- hosts: raspberry
+  become: true
+  become_user: root
+  user: pi
+  tasks:
+  - name: Install packages
+    apt: name={{item}} state=present update_cache=yes
+    with_items:
+      - gespeaker
+      - xsel
