@@ -136,10 +136,13 @@ We can change sound volume::
 Want to make it speak English from text
 ---------------------------------------
 
-eSpeak seems a common way as open-source according to https://www.webbie.org.uk/texttospeech.htm
+Create wave file with espeak from text and play the file with vlc::
 
-$ sudo apt-get install espeak
-$ espeak -v en "Hello" -w hello.wav
+ $ sudo apt-get install espeak
+ $ espeak -v en "Hello" -w hello.wav
+
+Now I cannot find the way to overplay the sound during playing other music.
+So maybe I need to play the sound via different channel like analog speaker, not bluetooth.
 
 References
 ----------
