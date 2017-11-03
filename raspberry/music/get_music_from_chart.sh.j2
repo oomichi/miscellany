@@ -18,6 +18,8 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+rm -rf ~/music/hot-100/*.mp3
+
 echo "Start to get mp3 from youtube.."
 youtube-dl --extract-audio --audio-format mp3 --embed-thumbnail -i --metadata-from-title "%(artist)s - %(title)s" --add-metadata --audio-quality 0 -o "~/music/hot-100/%(title)s.%(ext)s" `head -n 50 ${RULFILE}`
 rm -f  ${RULFILE}
