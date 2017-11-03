@@ -75,8 +75,8 @@ The way is just::
 
  $ ./get_music_from_chart.sh
 
-Want to play mp3 audio with bluetooth audio
--------------------------------------------
+[Done] Want to play mp3 audio with bluetooth audio
+--------------------------------------------------
 
 Connect to the target bluetooth device::
 
@@ -100,22 +100,22 @@ If failing, don't give up and try it again after rebooting.
 Create ~/.asoundrc file::
 
  $ cat ~/.asoundrc
- defaults.bluealsa.interface "hci0"
- defaults.bluealsa.device "B8:69:C2:74:19:5F"
- defaults.bluealsa.profile "a2dp"
- defaults.bluealsa.delay 10000
+ defaults.bluetooth.interface "hci0"
+ defaults.bluetooth.device "B8:69:C2:74:19:5F"
+ defaults.bluetooth.profile "a2dp"
+ defaults.bluetooth.delay 10000
 
 Play music::
 
- $ mplayer -ao alsa:device=bluealsa closer.mp3
+ $ mplayer -ao alsa:device=bluetooth closer.mp3
 
 Or::
 
- $ vlc --aout alsa --alsa-audio-device bluealsa closer.mp3
+ $ vlc --aout alsa --alsa-audio-device bluetooth closer.mp3
 
 We can change sound volume::
 
- $ amixer -D bluealsa
+ $ amixer -D bluetooth
  Simple mixer control 'JBL Flip 3 - A2DP',0
    Capabilities: pvolume pswitch
    Playback channels: Front Left - Front Right
@@ -124,7 +124,7 @@ We can change sound volume::
    Front Left: Playback 127 [100%] [on]
    Front Right: Playback 127 [100%] [on]
  $
- $ amixer -D bluealsa sset 'JBL Flip 3 - A2DP' 50%
+ $ amixer -D bluetooth sset 'JBL Flip 3 - A2DP' 50%
  Simple mixer control 'JBL Flip 3 - A2DP',0
    Capabilities: pvolume pswitch
    Playback channels: Front Left - Front Right
@@ -133,8 +133,8 @@ We can change sound volume::
    Front Left: Playback 64 [50%] [on]
    Front Right: Playback 64 [50%] [on]
 
-Want to make it speak English from text
----------------------------------------
+[Done] Want to make it speak English from text
+----------------------------------------------
 
 Create wave file with espeak from text and play the file with vlc::
 
