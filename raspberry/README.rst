@@ -16,11 +16,14 @@ Just put ssh file onto the boot partition of the SD card::
 Direct connect to PC
 --------------------
 
-Just add static address for direct connect::
+Set static address if HDCP fails::
 
  $ sudo vi /etc/dhcpcd.conf
- + interface eth0
+ + profile static_eth0
  + static ip_address=192.168.100.100/24
+ +
+ + interface eth0
+ + fallback static_eth0
 
 WIFI is used for internet access.
 
