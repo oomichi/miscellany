@@ -3,13 +3,19 @@
   become_user: root
   user: pi
   tasks:
+  - name: Cleanup old julius file
+    shell: rm -rf /tmp/julius-*
   - name: Download julius file
-    get_url: url="https://ja.osdn.net/projects/julius/downloads/66547/julius-4.4.2.tar.gz" dest=/tmp
+    shell: cd /tmp; wget https://ja.osdn.net/projects/julius/downloads/66547/julius-4.4.2.tar.gz
   - name: Extract julius file
-    unarchive: src=/tmp/julius-4.4.2.tar.gz dest=/tmp
+    shell: cd /tmp; tar xvzf /tmp/julius-4.4.2.tar.gz
   - name: Build julius [1/3]
     shell: cd /tmp/julius-4.4.2; ./configure
   - name: Build julius [2/3]
     shell: cd /tmp/julius-4.4.2; make
   - name: Build julius [3/3]
-    shell: make install
+    shell: cd /tmp/julius-4.4.2; make install
+  - name: Remove unnecessary files
+    shell: rm -rf /tmp/julius-4.4.2 /tmp/julius-4.4.2.tar.gz
+
+
