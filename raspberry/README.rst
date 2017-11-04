@@ -147,6 +147,63 @@ Create wave file with espeak from text and play the file with vlc::
 Now I cannot find the way to overplay the sound during playing other music.
 So maybe I need to play the sound via different channel like analog speaker, not bluetooth.
 
+Recognize English voice
+-----------------------
+
+Download Julius-4.3.1-Quickstart-..
+
+Create grammar file::
+
+ $ cat grammar/robo.grammar
+ S : NS_B PLAY MUSIC
+ S : NS_B STOP MUSIC
+
+Create voca file::
+
+ $ cat grammar/robo.voca
+ % NS_B
+ <s>        sil
+
+ % PLAY
+ PLAY       p l ey
+
+ % STOP
+ STOP       s t aa p
+
+ % MUSIC
+ MUSIC      m y uw z ih k
+
+Create Julius configuration file::
+
+ $ cat robo.jconf
+ -dfa grammar/robo.dfa
+ -v grammar/robo.dict
+ -h acoustic_model_files/hmmdefs
+ -hlist acoustic_model_files/tiedlist
+ -spmodel "sp"           # HMM model name
+ -input mic
+ -multipath
+ -gprune safe
+ -iwcd1 max
+ -iwsppenalty -70.0      # transition penalty for the appended sp models
+ -smpFreq 16000          # sampling rate (Hz)
+ -iwsp                   # append a skippable sp model at all word ends
+ -penalty1 5.0
+ -penalty2 20.0
+ -b2 200                 # beam width on 2nd pass (#words)
+ -sb 200.0               # score beam envelope threshold
+ -n 1
+
+Generate dict and dfa files::
+
+ $ cd grammar
+ $ perl mkdfa.pl robo
+ $ cd ..
+
+Run Julius::
+
+ $ julius -C robo.jconf
+
 References
 ----------
 
