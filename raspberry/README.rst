@@ -2,6 +2,9 @@ TODO
 ====
 
 OS: 2017-09-07-raspbian-stretch-lite
+Machine: Raspberry PI 3 Model B Quad-Core 1.2 GHz 1GB RAM
+Microphone: DricRoda USB Computer Mini Microphone
+BT Speaker: JBL Flip 3
 
 [Done] Enable SSH service
 -------------------------
