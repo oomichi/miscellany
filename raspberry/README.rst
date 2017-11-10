@@ -139,6 +139,16 @@ We can change sound volume::
    Front Left: Playback 64 [50%] [on]
    Front Right: Playback 64 [50%] [on]
 
+After setting USB-microphone primary, we need to specify device card
+if we want to use default headphone port like::
+
+ $ amixer -c 1
+ Simple mixer control 'PCM',0
+   Capabilities: pvolume pvolume-joined pswitch pswitch-joined
+   Playback channels: Mono
+   Limits: Playback -10239 - 400
+   Mono: Playback -2036 [77%] [-20.36dB] [on]
+
 [Done] Want to make it speak English from text
 ----------------------------------------------
 
