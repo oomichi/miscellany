@@ -19,6 +19,8 @@
     file: path=/home/pi/music state=directory owner=pi group=pi mode=0755
   - name: Make music hot-100 directory
     file: path=/home/pi/music/hot-100 state=directory owner=pi group=pi mode=0755
+  - name: Make music japan-hot-100 directory
+    file: path=/home/pi/music/japan-hot-100 state=directory owner=pi group=pi mode=0755
   - name: Make music favorite directory
     file: path=/home/pi/music/favorite state=directory owner=pi group=pi mode=0755
   - name: Make venv directory
