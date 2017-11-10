@@ -27,6 +27,9 @@ if __name__ == "__main__":
                            help="the API key value from the APIs & auth of "
                            "https://cloud.google.com/console . Ensure you "
                            "have enabled the YouTube Data API.")
+    argparser.add_argument("--chart",
+                           help="the chart name which you want to get.",
+                           default="hot-100")
     args = argparser.parse_args()
 
     try:
@@ -36,7 +39,7 @@ if __name__ == "__main__":
         print("Need to specify a valid API key with --api-key option.")
         exit(1)
 
-    chart = billboard.ChartData('hot-100')
+    chart = billboard.ChartData(args.chart)
     for song in chart:
         keyword = "%s %s" % (song.title, song.artist)
         youtube_search(youtube, keyword)
