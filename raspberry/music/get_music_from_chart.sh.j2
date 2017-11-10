@@ -1,5 +1,10 @@
 #!/bin/bash
 
+CHART=$1
+if [ -n "${CHART}" ]; then
+	CHART="hot-100"
+fi
+
 cd `dirname $0`
 
 API_KEY={{ google_api_key }}
@@ -18,16 +23,16 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
-rm -rf ~/music/hot-100/*.mp3
+rm -rf ~/music/${CHART}/*.mp3
 
 echo "Start to get mp3 from youtube.."
-youtube-dl --extract-audio --audio-format mp3 --embed-thumbnail -i --metadata-from-title "%(artist)s - %(title)s" --add-metadata --audio-quality 0 -o "~/music/hot-100/%(title)s.%(ext)s" `head -n 50 ${RULFILE}`
+youtube-dl --extract-audio --audio-format mp3 --embed-thumbnail -i --metadata-from-title "%(artist)s - %(title)s" --add-metadata --audio-quality 0 -o "~/music/${CHART}/%(title)s.%(ext)s" `head -n 50 ${RULFILE}`
 rm -f  ${RULFILE}
 
 echo "Start to put genre tag.."
-for file in `ls ~/music/hot-100/`
+for file in `ls ~/music/${CHART}/`
 do
-	mid3v2 -g "hot-100" ~/music/hot-100/${file}
+	mid3v2 -g "${CHART}" ~/music/${CHART}/${file}
 done
 
 if [ -d ~/.venv_music ]; then
