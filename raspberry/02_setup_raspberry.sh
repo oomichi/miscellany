@@ -10,5 +10,6 @@ if [ -n "${UNCONFIG}" ]; then
 fi
 
 ansible-playbook -vvvv -i hosts ./setup_basic.yaml
+ansible-playbook -vvvv -i hosts ./bluetooth/setup_bluetooth.yaml
 ansible-playbook -vvvv -i hosts ./music/setup_audio.yaml
 
