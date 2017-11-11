@@ -15,6 +15,11 @@ client.connect()
 client.start()
 
 
+def connect_speaker():
+    proc = Popen("/usr/local/bin/connect_bt.sh")
+    print("process id = %s" % proc.pid)
+
+
 def play_music():
     proc = Popen("/home/pi/music/play_music.sh")
     print("process id = %s" % proc.pid)
@@ -26,6 +31,7 @@ def stop_music():
 
 
 voice2cmd = {
+    "robot connect speaker": connect_speaker,
     "robot play music": play_music,
     "robot stop music": stop_music,
 }
