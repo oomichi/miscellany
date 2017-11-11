@@ -148,6 +148,9 @@ if we want to use default headphone port like::
    Playback channels: Mono
    Limits: Playback -10239 - 400
    Mono: Playback -2036 [77%] [-20.36dB] [on]
+ $
+ $ amixer -c 1 sset PCM 100%
+ $ mplayer -ao alsa:device=plughw=1.0 hello.wav
 
 [Done] Want to make it speak English from text
 ----------------------------------------------
