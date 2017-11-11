@@ -17,7 +17,12 @@
     shell: cd /tmp/julius-4.4.2; make install
   - name: Remove unnecessary files
     shell: rm -rf /tmp/julius-4.4.2 /tmp/julius-4.4.2.tar.gz
-  - name: Enable snd-pcm-oss module
-    shell: grep -v snd-pcm-oss /etc/modules > /tmp/modules; echo snd-pcm-oss >> /tmp/modules; mv /tmp/modules /etc/modules
+  - name: Copy julius.service
+    template:
+      src: etc/julius.service
+      dest: /etc/systemd/system/julius.service
+      owner: root
+      group: root
+      mode: '0755'
 
 

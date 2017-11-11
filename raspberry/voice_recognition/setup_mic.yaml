@@ -16,6 +16,8 @@
       owner: root
       group: root
       mode: '0644'
+  - name: Enable snd-pcm-oss module
+    shell: grep -v snd-pcm-oss /etc/modules > /tmp/modules; echo snd-pcm-oss >> /tmp/modules; mv /tmp/modules /etc/modules
   - name: Reboot
     shell: sleep 2 && shutdown -r now
     async: 1

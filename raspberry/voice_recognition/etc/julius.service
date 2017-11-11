@@ -1,0 +1,11 @@
+[Unit]
+Description = julius daemon
+
+[Service]
+ExecStart = /usr/local/bin/julius
+Restart = always
+Type = simple
+
+[Install]
+WantedBy = multi-user.target
+
