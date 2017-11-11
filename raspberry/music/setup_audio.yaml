@@ -25,6 +25,20 @@
     file: path=/home/pi/music/favorite state=directory owner=pi group=pi mode=0755
   - name: Make venv directory
     file: path=/home/pi/.venv_music state=directory owner=pi group=pi mode=0755
+  - name: Copy play_music.sh
+    template:
+      src: ./play_music.sh
+      dest: /home/pi/music/play_music.sh
+      owner: pi
+      group: pi
+      mode: '0755'
+  - name: Copy stop_music.sh
+    template:
+      src: ./stop_music.sh
+      dest: /home/pi/music/stop_music.sh
+      owner: pi
+      group: pi
+      mode: '0755'
   - name: Copy get_music_from_chart.sh
     template:
       src: ./get_music_from_chart.sh.j2
