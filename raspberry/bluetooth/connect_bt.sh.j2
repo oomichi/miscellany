@@ -1,5 +1,11 @@
 #!/bin/bash
 
+CONNECTED=`amixer -D bluealsa | wc -l`
+if [ ${CONNECTED} -ne 0 ]; then
+	echo "bluetooth is already connected."
+	exit 0
+fi
+
 sudo bluetoothctl << END_OF_INPUT
 connect {{ bluetooth_device_address }}
 END_OF_INPUT
