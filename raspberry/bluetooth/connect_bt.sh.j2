@@ -7,6 +7,8 @@ if [ ${CONNECTED} -ne 0 ]; then
 fi
 
 sudo bluetoothctl << END_OF_INPUT
+pair {{ bluetooth_device_address }}
+trust {{ bluetooth_device_address }}
 connect {{ bluetooth_device_address }}
 END_OF_INPUT
 

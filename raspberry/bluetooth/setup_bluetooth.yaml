@@ -21,4 +21,17 @@
       owner: pi
       group: pi
       mode: '0644'
-
+  - name: Connect to bluetooth
+    shell: /usr/local/bin/connect_bt.sh
+  - name: Reboot
+    shell: sleep 2 && shutdown -r now
+    async: 1
+    poll: 0
+    ignore_errors: true
+  - name: Wait for rebooting
+    local_action: wait_for host={{ inventory_hostname }} port=22 delay=30
+    changed_when: false
+    become: false
+    run_once: true
+  - name: Connect to bluetooth
+    shell: /usr/local/bin/connect_bt.sh
