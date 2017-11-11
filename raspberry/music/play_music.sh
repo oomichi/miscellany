@@ -5,6 +5,8 @@ if [ ! -f /home/pi/music/play.list ]; then
 	find /home/pi/music/hot-100/ -name "*.mp3" > /home/pi/music/play.list
 fi
 
+/usr/local/bin/connect_bt.sh
+
 IFS_BACKUP=$IFS
 IFS=$'\n'
 
