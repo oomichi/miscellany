@@ -8,3 +8,10 @@
     with_items:
       - gespeaker
       - xsel
+  - name: Copy say_something.sh
+    template:
+      src: say_something.sh
+      dest: /usr/local/bin/say_something.sh
+      owner: root
+      group: root
+      mode: '0755'
