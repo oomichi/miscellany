@@ -41,6 +41,10 @@ def stop_music():
     print("process id = %s" % proc.pid)
 
 
+def voice_message(msg):
+    Popen("/usr/local/bin/say_something.sh", msg)
+
+
 voice2cmd = {
     "robot connect the speaker": connect_speaker,
     "robot play music": play_music,
@@ -63,6 +67,7 @@ try:
                 voice2cmd[text]()
             else:
                 print('"%s" is ignored' % text)
+                voice_message("I cannot understand the command %s" % text)
 except KeyboardInterrupt:
     client.stop()
     client.join()
