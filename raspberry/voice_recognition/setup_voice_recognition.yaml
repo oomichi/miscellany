@@ -3,6 +3,8 @@
   become_user: root
   user: pi
   tasks:
+  - name: Remove old julius directory
+    shell: rm -f /home/pi/julius_data
   - name: Make julius directory
     file: path=/home/pi/julius_data state=directory owner=pi group=pi mode=0755
   - name: Cleanup old julius file
@@ -74,3 +76,5 @@
       owner: pi
       group: pi
       mode: '0644'
+  - name: Enable julius.service
+    shell: systemctl enable julius.service
