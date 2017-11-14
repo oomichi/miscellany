@@ -2,7 +2,7 @@
 Description = julius daemon
 
 [Service]
-ExecStart = /usr/local/bin/julius
+ExecStart = /usr/local/bin/julius -C /home/pi/julius_data/robo.conf
 Restart = always
 Type = simple
 

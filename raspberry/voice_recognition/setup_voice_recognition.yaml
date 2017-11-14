@@ -3,6 +3,8 @@
   become_user: root
   user: pi
   tasks:
+  - name: Make julius directory
+    file: path=/home/pi/julius_data state=directory owner=pi group=pi mode=0755
   - name: Cleanup old julius file
     shell: rm -rf /tmp/julius-*
   - name: Download julius file
@@ -17,6 +19,12 @@
     shell: cd /tmp/julius-4.4.2; make install
   - name: Remove unnecessary files
     shell: rm -rf /tmp/julius-4.4.2 /tmp/julius-4.4.2.tar.gz
+  - name: Download English file
+    shell: cd /tmp; wget "http://www.repository.voxforge1.org/downloads/Main/Tags/Releases/0.9.0/Julius-4.3.1-Quickstart-Linux_(0.9.0).tgz"
+  - name: Install English file
+    shell: cd /home/pi/julius_data; tar -zxvf "/tmp/Julius-4.3.1-Quickstart-Linux_(0.9.0).tgz"
+  - name: Remove English file
+    shell: rm -f "/tmp/Julius-4.3.1-Quickstart-Linux_(0.9.0).tgz"
   - name: Copy julius.service
     template:
       src: etc/julius.service
@@ -24,5 +32,45 @@
       owner: root
       group: root
       mode: '0755'
-
-
+  - name: Copy robo.conf
+    template:
+      src: etc/robo.conf
+      dest: /home/pi/julius_data/robo.conf
+      owner: pi
+      group: pi
+      mode: '0644'
+  - name: Copy robo.dfa
+    template:
+      src: etc/robo.dfa
+      dest: /home/pi/julius_data/grammer/robo.dfa
+      owner: pi
+      group: pi
+      mode: '0644'
+  - name: Copy robo.dict
+    template:
+      src: etc/robo.dict
+      dest: /home/pi/julius_data/grammer/robo.dict
+      owner: pi
+      group: pi
+      mode: '0644'
+  - name: Copy robo.grammar
+    template:
+      src: etc/robo.grammar
+      dest: /home/pi/julius_data/grammer/robo.grammar
+      owner: pi
+      group: pi
+      mode: '0644'
+  - name: Copy robo.term
+    template:
+      src: etc/robo.term
+      dest: /home/pi/julius_data/grammer/robo.term
+      owner: pi
+      group: pi
+      mode: '0644'
+  - name: Copy robo.voca
+    template:
+      src: etc/robo.voca
+      dest: /home/pi/julius_data/grammer/robo.voca
+      owner: pi
+      group: pi
+      mode: '0644'
