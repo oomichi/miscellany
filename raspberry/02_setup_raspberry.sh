@@ -12,4 +12,5 @@ fi
 ansible-playbook -vvvv -i hosts ./setup_basic.yaml
 ansible-playbook -vvvv -i hosts ./bluetooth/setup_bluetooth.yaml
 ansible-playbook -vvvv -i hosts ./music/setup_audio.yaml
+ansible-playbook -vvvv -i hosts ./voice_recognition/setup_mic.yaml
 
