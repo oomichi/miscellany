@@ -42,35 +42,35 @@
   - name: Copy robo.dfa
     template:
       src: etc/robo.dfa
-      dest: /home/pi/julius_data/grammer/robo.dfa
+      dest: /home/pi/julius_data/grammar/robo.dfa
       owner: pi
       group: pi
       mode: '0644'
   - name: Copy robo.dict
     template:
       src: etc/robo.dict
-      dest: /home/pi/julius_data/grammer/robo.dict
+      dest: /home/pi/julius_data/grammar/robo.dict
       owner: pi
       group: pi
       mode: '0644'
   - name: Copy robo.grammar
     template:
       src: etc/robo.grammar
-      dest: /home/pi/julius_data/grammer/robo.grammar
+      dest: /home/pi/julius_data/grammar/robo.grammar
       owner: pi
       group: pi
       mode: '0644'
   - name: Copy robo.term
     template:
       src: etc/robo.term
-      dest: /home/pi/julius_data/grammer/robo.term
+      dest: /home/pi/julius_data/grammar/robo.term
       owner: pi
       group: pi
       mode: '0644'
   - name: Copy robo.voca
     template:
       src: etc/robo.voca
-      dest: /home/pi/julius_data/grammer/robo.voca
+      dest: /home/pi/julius_data/grammar/robo.voca
       owner: pi
       group: pi
       mode: '0644'
