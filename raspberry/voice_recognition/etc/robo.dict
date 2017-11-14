@@ -1,11 +1,17 @@
 0	[ROBOT]	r ow b aa t
 1	[PLAY]	p l ey
-1	[STOP]	s t aa p
-1	[TURN]	t er n
 1	[PRAY]	p r ey
+1	[STOP]	s t aa p
+1	[START]	s t aa r t
+1	[TURN]	t er n
+1	[CONNECT]	k ah n eh k t
 2	[MUSIC]	m y uw z ih k
-3	[ON]	aa n
+3	[VOLUME]	v aa l y uw m
+4	[ON]	aa n
 4	[OFF]	ao f
+4	[UP]	ah p
+4	[DOWN]	d aw n
 5	[THE]	dh ah
 6	[TV]	t iy v iy
 6	[TELEVISION]	t eh l ah v ih zh ah n
+7	[SPEAKER]	s p iy k er

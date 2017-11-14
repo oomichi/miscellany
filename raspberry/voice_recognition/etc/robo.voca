@@ -7,15 +7,19 @@ PRAY       p r ey
 STOP       s t aa p
 START      s t aa r t
 TURN       t er n
+CONNECT    k ah n eh k t
 
 % MUSIC
 MUSIC      m y uw z ih k
 
-% ON
-ON         aa n
+% VOLUME
+VOLUME     v aa l y uw m
 
-% OFF
+% ADVERB
+ON         aa n
 OFF        ao f
+UP         ah p
+DOWN       d aw n
 
 % THE
 THE        dh ah
@@ -23,3 +27,7 @@ THE        dh ah
 % TV
 TV         t iy v iy
 TELEVISION t eh l ah v ih zh ah n
+
+% SPEAKER
+SPEAKER    s p iy k er
+
