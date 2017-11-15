@@ -4,15 +4,20 @@
 PID=`ps -ef | grep mplayer | grep -v grep | awk '{print $2}'`
 if [ -n "${PID}" ]; then
 	echo "mplayer process(${PID}) already exist."
+	say_something.sh "Music is already played."
 	exit 0
+fi
+
+/usr/local/bin/connect_bt.sh
+if [ $? -ne 0 ]; then
+	say_something.sh "Failed to connect bluetooth."
+	exit 1
 fi
 
 # Create music playlist
 if [ ! -f /home/pi/music/play.list ]; then
 	find /home/pi/music/hot-100/ -name "*.mp3" > /home/pi/music/play.list
 fi
-
-/usr/local/bin/connect_bt.sh
 
 IFS_BACKUP=$IFS
 IFS=$'\n'

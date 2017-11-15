@@ -13,3 +13,11 @@ connect {{ bluetooth_device_address }}
 END_OF_INPUT
 
 sleep 5
+
+CONNECTED=`amixer -D bluetooth | wc -l`
+if [ ${CONNECTED} -eq 0 ]; then
+	echo "bluetooth is not connected."
+	exit 1
+fi
+
+exit 0
