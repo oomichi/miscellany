@@ -21,16 +21,6 @@ def connect_speaker():
     print("process id = %s" % proc.pid)
 
 
-def increase_volume():
-    proc = Popen("/home/pi/music/increase_volume.sh")
-    print("process id = %s" % proc.pid)
-
-
-def decrease_volume():
-    proc = Popen("/home/pi/music/decrease_volume.sh")
-    print("process id = %s" % proc.pid)
-
-
 def play_music():
     proc = Popen("/home/pi/music/play_music.sh")
     print("process id = %s" % proc.pid)
@@ -49,8 +39,6 @@ voice2cmd = {
     "robot connect the speaker": connect_speaker,
     "robot play music": play_music,
     "robot stop music": stop_music,
-    "robot turn up the volume": increase_volume,
-    "robot turn down the volume": decrease_volume,
 }
 
 try:
