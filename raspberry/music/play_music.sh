@@ -10,6 +10,7 @@ fi
 
 /usr/local/bin/connect_bt.sh
 if [ $? -ne 0 ]; then
+	echo "Failed to connect bluetooth."
 	say_something.sh "Failed to connect bluetooth."
 	exit 1
 fi
