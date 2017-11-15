@@ -11,13 +11,23 @@ YOUTUBE_API_VERSION = "v3"
 def youtube_search(youtube, keyword):
     search_response = youtube.search().list(
         q=keyword,
-        part="id,snippet",
+        part="id",
         order="viewCount",
         maxResults=1).execute()
 
     for search_result in search_response.get("items", []):
         if search_result["id"]["kind"] != "youtube#video":
             continue
+        video_id = search_result["id"]["videoId"]
+        detail = youtube.videos().list(
+            id=video_id,
+            part="statistics").execute()
+        view_count = int(detail["items"][0]["statistics"]["viewCount"])
+
+        if view_count < 1000000:
+            # Exclude non-professional videos
+            continue
+
         print("https://www.youtube.com/watch?v=%s"
               % search_result["id"]["videoId"])
 
