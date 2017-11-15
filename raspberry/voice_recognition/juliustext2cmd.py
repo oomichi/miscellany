@@ -32,13 +32,14 @@ def stop_music():
 
 
 def voice_message(msg):
-    Popen("/usr/local/bin/say_something.sh", msg)
+    args = ["/usr/local/bin/say_something.sh", msg]
+    Popen(args)
 
 
 voice2cmd = {
-    "robot connect the speaker": connect_speaker,
-    "robot play music": play_music,
-    "robot stop music": stop_music,
+    "robot connect the speaker": ["OK, I am connecting the speaker", connect_speaker],
+    "robot play music": ["OK, I am playing music", play_music],
+    "robot stop music": ["OK, I am stopping music", stop_music],
 }
 
 try:
@@ -52,7 +53,8 @@ try:
             text = str(result)
             print('"%s" is detected' % text)
             if text in voice2cmd:
-                voice2cmd[text]()
+                voice_message(voice2cmd[text][0])
+                voice2cmd[text][1]()
             else:
                 print('"%s" is ignored' % text)
                 voice_message("I cannot understand the command %s" % text)
