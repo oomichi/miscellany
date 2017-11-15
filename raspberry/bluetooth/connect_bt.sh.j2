@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONNECTED=`amixer -D bluetooth | wc -l`
+CONNECTED=`amixer -D bluealsa | wc -l`
 if [ ${CONNECTED} -ne 0 ]; then
 	echo "bluetooth is already connected."
 	exit 0
@@ -14,7 +14,7 @@ END_OF_INPUT
 
 sleep 5
 
-CONNECTED=`amixer -D bluetooth | wc -l`
+CONNECTED=`amixer -D bluealsa | wc -l`
 if [ ${CONNECTED} -eq 0 ]; then
 	echo "bluetooth is not connected."
 	exit 1

@@ -24,7 +24,7 @@ IFS=$'\n'
 
 LIST=`cat /home/pi/music/play.list`
 for mp3file in $LIST; do
-	mplayer -quiet -slave -ao alsa:device=bluetooth ${mp3file}
+	mplayer -quiet -slave -ao alsa:device=bluealsa ${mp3file}
 	if [ $? -ne 0 ]; then
 		echo "Failed to play ${mp3file}"
 		exit 1
