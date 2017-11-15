@@ -49,15 +49,17 @@ try:
         except Queue.Empty:
             time.sleep(1)
             continue
-        if isinstance(result, pyjulius.Sentence):
-            text = str(result)
-            print('"%s" is detected' % text)
-            if text in voice2cmd:
-                voice_message(voice2cmd[text][0])
-                voice2cmd[text][1]()
-            else:
-                print('"%s" is ignored' % text)
-                voice_message("I cannot understand the command %s" % text)
+        if not isinstance(result, pyjulius.Sentence):
+            continue
+
+        text = str(result)
+        print('"%s" is detected' % text)
+        if text in voice2cmd:
+            voice_message(voice2cmd[text][0])
+            voice2cmd[text][1]()
+        else:
+            print('"%s" is ignored' % text)
+            voice_message("I cannot understand the command %s" % text)
 except KeyboardInterrupt:
     client.stop()
     client.join()
