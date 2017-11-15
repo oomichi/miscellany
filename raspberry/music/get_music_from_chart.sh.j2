@@ -16,7 +16,7 @@ if [ -d ~/.venv_music ]; then
 fi
 
 echo "Start to get youtube url.."
-python get_youtube_url_from_chart.py --api-key=${API_KEY} > ${RULFILE}
+python get_youtube_url_from_chart.py --api-key=${API_KEY} --chart=${CHART} > ${RULFILE}
 if [ $? -ne 0 ]; then
 	echo "Failed to run get_youtube_url_from_chart.py"
 	rm -f  ${RULFILE}
