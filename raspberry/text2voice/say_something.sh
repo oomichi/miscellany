@@ -2,7 +2,8 @@
 
 WORD=$1
 
-rm -f /tmp/something.wav
-espeak -v en ${WORD} -w /tmp/something.wav
-mplayer -ao alsa:device=plughw=1.0 /tmp/something.wav
-rm -f /tmp/something.wav
+TEMPFILE=`mktemp /tmp/something-XXXX.wav`
+espeak -v en "${WORD}" -w ${TEMPFILE}
+mplayer -ao alsa:device=plughw=1.0 ${TEMPFILE}
+rm -f ${TEMPFILE}
+
