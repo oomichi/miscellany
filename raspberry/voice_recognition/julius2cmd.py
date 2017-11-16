@@ -16,7 +16,17 @@ PORT = 10500
 music_process = None
 
 client = pyjulius.Client(HOST, PORT)
-client.connect()
+
+# Loop for waiting julius.service
+for i in range(10):
+    try:
+        client.connect()
+    except pyjulius.exceptions.ConnectionError:
+        time.sleep(1)
+        continue
+else
+    raise
+
 client.start()
 
 
