@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import os
+import signal
 import subprocess
 from subprocess import Popen
 import sys
@@ -28,7 +30,7 @@ def play_music():
     if music_process is not None:
         voice_message("I am already playing music.")
         return
-    proc = Popen("/home/pi/music/play_music.sh")
+    proc = Popen("/home/pi/music/play_music.sh", preexec_fn=os.setsid)
     music_process = proc
 
 def stop_music():
@@ -36,7 +38,8 @@ def stop_music():
     if music_process is None:
         voice_message("music already stops.")
         return
-    music_process.kill()
+    os.killpg(os.getpgid(music_process.pid), signal.SIGTERM)
+    s.getpgid(pro.pid), signal.SIGTERM)
 
 def voice_message(msg):
     args = ["/usr/local/bin/say_something.sh", msg]
