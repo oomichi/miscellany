@@ -38,7 +38,8 @@ def stop_music():
 
 def voice_message(msg):
     args = ["/usr/local/bin/say_something.sh", msg]
-    Popen(args)
+    proc = Popen(args)
+    proc.wait()
 
 
 voice2cmd = {
