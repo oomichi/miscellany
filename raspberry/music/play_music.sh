@@ -17,7 +17,8 @@ fi
 
 # Create music playlist
 if [ ! -f /home/pi/music/play.list ]; then
-	find /home/pi/music/hot-100/ -name "*.mp3" > /home/pi/music/play.list
+	find /home/pi/music/favorite/ -name "*.mp3" > /home/pi/music/play.list
+	find /home/pi/music/hot-100/ -name "*.mp3" >> /home/pi/music/play.list
 fi
 
 IFS_BACKUP=$IFS
