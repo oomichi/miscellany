@@ -1,5 +1,6 @@
 [Unit]
 Description = julius daemon
+Before = julius2cmd.service
 
 [Service]
 ExecStart = /usr/local/bin/julius -C /home/pi/julius_data/robo.conf

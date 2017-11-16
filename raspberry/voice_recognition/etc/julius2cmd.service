@@ -1,0 +1,12 @@
+[Unit]
+Description = julius2cmd daemon
+After = julius.service
+
+[Service]
+ExecStart = /home/pi/julius_data/julius2cmd.py
+Restart = always
+Type = simple
+
+[Install]
+WantedBy = multi-user.target
+
