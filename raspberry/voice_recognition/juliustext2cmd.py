@@ -11,6 +11,8 @@ import Queue
 HOST = 'localhost'
 PORT = 10500
 
+music_process = None
+
 client = pyjulius.Client(HOST, PORT)
 client.connect()
 client.start()
@@ -22,14 +24,17 @@ def connect_speaker():
 
 
 def play_music():
+    global music_process
     proc = Popen("/home/pi/music/play_music.sh")
-    print("process id = %s" % proc.pid)
-
+    # TODO: We need to check the command succeeded before storing.
+    music_process = proc
 
 def stop_music():
-    proc = Popen("/home/pi/music/stop_music.sh")
-    print("process id = %s" % proc.pid)
-
+    global music_process
+    if music_process is None:
+        voice_message("music already stops.")
+        return
+    music_process.kill()
 
 def voice_message(msg):
     args = ["/usr/local/bin/say_something.sh", msg]
