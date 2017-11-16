@@ -33,13 +33,15 @@ def play_music():
     proc = Popen("/home/pi/music/play_music.sh", preexec_fn=os.setsid)
     music_process = proc
 
+
 def stop_music():
     global music_process
     if music_process is None:
         voice_message("music already stops.")
         return
     os.killpg(os.getpgid(music_process.pid), signal.SIGTERM)
-    s.getpgid(pro.pid), signal.SIGTERM)
+    music_process = None
+
 
 def voice_message(msg):
     args = ["/usr/local/bin/say_something.sh", msg]
