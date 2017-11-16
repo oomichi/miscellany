@@ -25,8 +25,10 @@ def connect_speaker():
 
 def play_music():
     global music_process
+    if music_process is not None:
+        voice_message("I am already playing music.")
+        return
     proc = Popen("/home/pi/music/play_music.sh")
-    # TODO: We need to check the command succeeded before storing.
     music_process = proc
 
 def stop_music():
