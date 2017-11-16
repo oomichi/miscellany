@@ -76,10 +76,10 @@
       owner: pi
       group: pi
       mode: '0644'
-  - name: Copy juliustext2cmd.py
+  - name: Copy julius2cmd.py
     template:
-      src: juliustext2cmd.py
-      dest: /home/pi/julius_data/juliustext2cmd.py
+      src: julius2cmd.py
+      dest: /home/pi/julius_data/julius2cmd.py
       owner: pi
       group: pi
       mode: '0755'
