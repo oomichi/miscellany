@@ -24,7 +24,7 @@ for i in range(10):
     except pyjulius.exceptions.ConnectionError:
         time.sleep(1)
         continue
-else
+else:
     raise
 
 client.start()
