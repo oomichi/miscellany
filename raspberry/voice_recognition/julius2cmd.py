@@ -41,7 +41,8 @@ def play_music():
         voice_message("I am already playing music.")
         return
     proc = Popen("/home/pi/music/play_music.sh", preexec_fn=os.setsid)
-    music_process = proc
+    if proc.wait() == 0:
+        music_process = proc
 
 
 def stop_music():
