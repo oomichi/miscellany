@@ -39,6 +39,13 @@
       owner: pi
       group: pi
       mode: '0755'
+  - name: Copy mark_favorite.sh
+    template:
+      src: ./mark_favorite.sh
+      dest: /home/pi/music/mark_favorite.sh
+      owner: pi
+      group: pi
+      mode: '0755'
   - name: Copy get_music_from_chart.sh
     template:
       src: ./get_music_from_chart.sh.j2
