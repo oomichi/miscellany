@@ -21,6 +21,7 @@ client = pyjulius.Client(HOST, PORT)
 for i in range(10):
     try:
         client.connect()
+        break
     except pyjulius.exceptions.ConnectionError:
         time.sleep(1)
         continue
