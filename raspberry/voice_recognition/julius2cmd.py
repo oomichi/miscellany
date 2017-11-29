@@ -67,6 +67,8 @@ voice2cmd = {
     "robot stop music": ["OK, I am stopping music", stop_music],
 }
 
+voice_message("Hello, I am ready to work now.")
+
 try:
     while True:
         try:
