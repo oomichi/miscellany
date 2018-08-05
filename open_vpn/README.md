@@ -18,6 +18,10 @@ $ sudo vi /etc/network/interfaces
 + wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 ```
 Enable packet forwarding and SNAT: https://github.com/oomichi/try-kubernetes/blob/master/ci/11_mini_openstack/controller/03_SNAT.yaml
+```
+- -A POSTROUTING -s 192.168.1.0/24 -o enp0s31f6 -j MASQUERADE
++ -A POSTROUTING -s 192.168.100.0/24 -o wlan0 -j MASQUERADE
+```
 
 Enable OpenVPN
 --------------
