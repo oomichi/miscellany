@@ -1,6 +1,24 @@
 OpenVPN raspberry machine
 =========================
 
+Make it router
+--------------
+
+
+Configure LAN interface::
+```
+$ sudo vi /etc/network/interfaces
++ auto eth0
++ iface eth0 inet static
++   address 192.168.100.1
++   netmask 255.255.255.0
++ 
++ auto wlan0
++ iface wlan0 inet dhcp
++ wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+```
+Enable packet forwarding and SNAT: https://github.com/oomichi/try-kubernetes/blob/master/ci/11_mini_openstack/controller/03_SNAT.yaml
+
 Enable OpenVPN
 --------------
 
@@ -30,26 +48,5 @@ tun0: flags=4305<UP,POINTOPOINT,RUNNING,NOARP,MULTICAST>  mtu 1500
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 5  bytes 240 (240.0 B)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-```
-
-Make it router
---------------
-Configure LAN interface::
-```
-$ sudo vi /etc/network/interfaces
-+ auto eth0
-+ iface eth0 inet static
-+   address 192.168.100.1
-+   netmask 255.255.255.0
-+ 
-+ auto wlan0
-+ iface wlan0 inet dhcp
-+ wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-```
-Enable packet forwarding::
-```
-$ sudo vi /etc/sysctl.conf
-- #net.ipv4.ip_forward = 1
-+ net.ipv4.ip_forward = 1
 ```
 
