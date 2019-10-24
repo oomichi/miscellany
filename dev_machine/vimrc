@@ -1,6 +1,7 @@
 set number
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+set viminfo='20,\"1000
 
 " Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
