@@ -5,6 +5,7 @@ Environments
 ------------
 
 - Raspberry Pi 2B
+- Raspbian GNU/Linux 10 (buster)
 - Netgear ReadyNAS Duo v2
 - Gearmin 945
 
