@@ -4,8 +4,7 @@ OpenVPN raspberry machine
 Make it router
 --------------
 
-
-Configure WIFI interface::
+Configure WIFI interface (This steps should be done by hands, not automated)::
 ```
 # vi /etc/wpa_supplicant/wpa_supplicant.conf 
 # cat /etc/wpa_supplicant/wpa_supplicant.conf 
@@ -21,12 +20,66 @@ network={
 # # For "Failed to connect to non-global ctrl_ifname: wlan0  error: No such file or directory" error, restart dhcpcd here.
 # systemctl restart dhcpcd
 # wpa_cli -i wlan0 reconfigure
+```
+Configure eth0 for local network (The following steps can be done automatically with ansible-playbook)::
+```
+# vi /etc/dhcpcd.conf
++ interface eth0
++ static ip_address=192.168.100.1/24
+```
+Configure DHCP server for eth0::
+```
+# apt update
+# apt install -y isc-dhcp-server
+# vi /etc/dhcp/dhcpd.conf
+
+- #authoritative;
++ authoritative;
+
++ subnet 192.168.100.0 netmask 255.255.255.0 {
++   option routers              192.168.100.1;
++   option subnet-mask          255.255.255.0;
++   option broadcast-address    192.168.100.255;
++   option domain-name-servers  8.8.8.8;
++   range 192.168.100.50 192.168.100.99;
++ }
+#
+# vi /etc/default/isc-dhcp-server
+- INTERFACESv4=""
++ INTERFACESv4="eth0"
+INTERFACESv6=""
 
 ```
-Enable packet forwarding and SNAT: https://github.com/oomichi/try-kubernetes/blob/master/ci/11_mini_openstack/controller/03_SNAT.yaml
+Enable packet forwarding and SNAT:
 ```
-- -A POSTROUTING -s 192.168.1.0/24 -o enp0s31f6 -j MASQUERADE
+# apt install ufw
+# vi /etc/sysctl.conf
+
+- # net.ipv4.ip_forward=1
++ net.ipv4.ip_forward=1
+
+# vi /etc/default/ufw
+
+- DEFAULT_INPUT_POLICY="DROP"
++ DEFAULT_INPUT_POLICY="ACCEPT"
+
+- DEFAULT_FORWARD_POLICY="DROP"
++ DEFAULT_FORWARD_POLICY="ACCEPT"
+
+# vi /etc/ufw/before.rules
++ # NAT table rules
++ *nat
++ :POSTROUTING ACCEPT [0:0]
++ :PREROUTING ACCEPT [0:0]
++
 + -A POSTROUTING -s 192.168.100.0/24 -o wlan0 -j MASQUERADE
++
++ COMMIT
+
+# Don't delete these required lines, otherwise there will be errors
+*filter
+
+# ufw enable
 ```
 
 Enable OpenVPN
