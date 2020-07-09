@@ -5,17 +5,23 @@ Make it router
 --------------
 
 
-Configure LAN interface::
+Configure WIFI interface::
 ```
-$ sudo vi /etc/network/interfaces
-+ auto eth0
-+ iface eth0 inet static
-+   address 192.168.100.1
-+   netmask 255.255.255.0
-+ 
-+ auto wlan0
-+ iface wlan0 inet dhcp
-+ wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+# vi /etc/wpa_supplicant/wpa_supplicant.conf 
+# cat /etc/wpa_supplicant/wpa_supplicant.conf 
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=us
+
+network={
+        ssid="<WIFI SSID>"
+        psk="<WIFI PASSWORD>"
+}
+#
+# # For "Failed to connect to non-global ctrl_ifname: wlan0  error: No such file or directory" error, restart dhcpcd here.
+# systemctl restart dhcpcd
+# wpa_cli -i wlan0 reconfigure
+
 ```
 Enable packet forwarding and SNAT: https://github.com/oomichi/try-kubernetes/blob/master/ci/11_mini_openstack/controller/03_SNAT.yaml
 ```
