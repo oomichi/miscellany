@@ -16,3 +16,6 @@ set -e
 rm -rf ./output-by-generator
 java -jar openapi-generator-cli.jar version
 java -jar openapi-generator-cli.jar generate --input-spec ./openapi-spec.yaml --generator-name python-flask --output ./output-by-generator
+
+# Update default_controller.py as we need
+cp ./default_controller.py output-by-generator/openapi_server/controllers/
