@@ -1,0 +1,80 @@
+openapi: "3.0.3"
+
+info:
+  title: "Example API"
+  version: "1.0.0"
+
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+
+paths:
+  /v1/users:
+    get:
+      summary: Get all users.
+      description: Returns an array of User model
+      parameters: []
+      responses:
+        '200':
+          description: A JSON array of User model
+          content:
+            application/json:
+              schema: 
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+                example:
+                  - id: 39b3e94b-8237-4759-8c3a-b6647dbf7163
+                    name: Ken1 Omichi
+                  - id: 80d900d2-c6d7-4426-b6db-0a14d410875d
+                    name: Ken2 Omichi
+    post:
+      summary: Create a new User
+      description: Create a new User
+      parameters: []
+      requestBody:
+        description: user to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            example:
+              name: Ken1 Omichi
+      responses:
+        '201':
+          description: CREATED
+  /v1/users/{userId}:
+    get:
+      summary: Get user by ID.
+      description: Returns a single User model
+      parameters:
+        - name: userId
+          in: path
+          description: user id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single User model
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/User'
+                example:
+                  id: 39b3e94b-8237-4759-8c3a-b6647dbf7163
+                  name: Ken1 Omichi
