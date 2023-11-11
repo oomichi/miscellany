@@ -22,8 +22,11 @@ rm -rf ./output-by-generator
 java -jar openapi-generator-cli.jar version
 java -jar openapi-generator-cli.jar generate --input-spec ./openapi-spec.yaml --generator-name python-flask --output ./output-by-generator
 
-# Update default_controller.py as we need
+# Update default_controller.py and others as we need
 cp ./default_controller.py output-by-generator/openapi_server/controllers/
+cp ./__main__.py  output-by-generator/openapi_server/
+cp -rf ./db  output-by-generator/openapi_server/
+cp ./Dockerfile output-by-generator/
 
 # This is a workaround. See https://github.com/oomichi/miscellany/issues/8#issuecomment-1806466051
 cp ./requirements.txt output-by-generator/
