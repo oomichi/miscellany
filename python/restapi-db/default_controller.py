@@ -2,6 +2,7 @@ import connexion
 from typing import Dict
 from typing import Tuple
 from typing import Union
+import uuid
 
 from openapi_server.models.user import User  # noqa: E501
 from openapi_server import util
@@ -23,7 +24,7 @@ def v1_users_get():  # noqa: E501
     return [user.dump() for user in users]
 
 
-def v1_users_post(user):  # noqa: E501
+def v1_users_post():  # noqa: E501
     """Create a new User
 
     Create a new User # noqa: E501
@@ -33,9 +34,13 @@ def v1_users_post(user):  # noqa: E501
 
     :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
-    if connexion.request.is_json:
-        user = User.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    user_json = connexion.request.get_json()
+    user_json["id"] = uuid.uuid4().__str__()
+
+    session.add(tables.Users(**user_json))
+    session.commit()
+
+    return user_json
 
 
 def v1_users_user_id_get(user_id):  # noqa: E501
@@ -48,4 +53,6 @@ def v1_users_user_id_get(user_id):  # noqa: E501
 
     :rtype: Union[List[User], Tuple[List[User], int], Tuple[List[User], int, Dict[str, str]]
     """
-    return 'do some magic!'
+    user = session.query(tables.Users).filter(tables.Users.id == user_id).one_or_none()
+
+    return user.dump() if user is not None else ("Not found", 404)
