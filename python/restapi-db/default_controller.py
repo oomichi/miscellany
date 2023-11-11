@@ -1,11 +1,6 @@
 import connexion
-from typing import Dict
-from typing import Tuple
-from typing import Union
 import uuid
 
-from openapi_server.models.user import User  # noqa: E501
-from openapi_server import util
 from openapi_server.db.setting import session
 from openapi_server.db import tables
 
@@ -14,7 +9,6 @@ def v1_users_get():  # noqa: E501
     """Get all users.
 
     Returns an array of User model # noqa: E501
-
 
     :rtype: Union[List[User], Tuple[List[User], int], Tuple[List[User], int, Dict[str, str]]
     """
