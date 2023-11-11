@@ -5,7 +5,7 @@ on:
       - master
 
 jobs:
-  build-test:
+  go-build-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,3 +16,18 @@ jobs:
         run: |
           ./golang/install_golang.sh
           ./golang/tcp-connection/build.sh
+
+  python-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Check flake8 coding style
+        run: |
+          ./python/run_flake8.sh
+
+      - name: Build python sample container image
+        run: |
+          ./python/restapi-db/build_container_image.sh

@@ -1,5 +1,3 @@
-import sys
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String
 from openapi_server.db.setting import Base
 from openapi_server.db.setting import ENGINE
