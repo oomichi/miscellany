@@ -1,7 +1,7 @@
 import connexion
 import uuid
 
-from flask_jwt_extended import jwt_required, create_access_token
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
 from openapi_server.db.setting import session
 from openapi_server.db import tables
 
@@ -14,6 +14,8 @@ def v1_users_get():  # noqa: E501
 
     :rtype: Union[List[User], Tuple[List[User], int], Tuple[List[User], int, Dict[str, str]]
     """
+    user_id_of_caller = get_jwt_identity()
+    print("user_id_of_caller: ", user_id_of_caller)
 
     users = session.query(tables.Users).all()
 
