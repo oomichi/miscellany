@@ -1,10 +1,12 @@
 import connexion
 import uuid
 
+from flask_jwt_extended import jwt_required, create_access_token
 from openapi_server.db.setting import session
 from openapi_server.db import tables
 
 
+@jwt_required()
 def v1_users_get():  # noqa: E501
     """Get all users.
 
@@ -29,14 +31,19 @@ def v1_users_post():  # noqa: E501
     :rtype: Union[None, Tuple[None, int], Tuple[None, int, Dict[str, str]]
     """
     user_json = connexion.request.get_json()
-    user_json["id"] = uuid.uuid4().__str__()
+    user_id = uuid.uuid4().__str__()
+    user_json["id"] = user_id
 
     session.add(tables.Users(**user_json))
     session.commit()
 
+    access_token = create_access_token(identity=user_id)
+    user_json["access_token"] = access_token
+
     return user_json
 
 
+@jwt_required()
 def v1_users_user_id_get(user_id):  # noqa: E501
     """Get user by ID.
 
