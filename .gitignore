@@ -2,3 +2,4 @@ raspberry/GOOGLE_CLOUD_API_KEY
 raspberry/hosts
 python/restapi-db/output-by-generator/*
 python/restapi-db/openapi-generator-cli.jar
+tempfile
