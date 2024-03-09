@@ -6,6 +6,7 @@ from openapi_server.db.setting import session
 from openapi_server.db import tables
 
 
+@jwt_required()
 def v1_users_get():  # noqa: E501
     """Get all users.
 
@@ -42,6 +43,7 @@ def v1_users_post():  # noqa: E501
     return user_json
 
 
+@jwt_required()
 def v1_users_user_id_get(user_id):  # noqa: E501
     """Get user by ID.
 
